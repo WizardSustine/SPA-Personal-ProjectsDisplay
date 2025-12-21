@@ -3,6 +3,7 @@ package com.personalspa.personalpage;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+
 @SpringBootApplication
 public class PersonalpageApplication {
 
@@ -10,4 +11,5 @@ public class PersonalpageApplication {
 		SpringApplication.run(PersonalpageApplication.class, args);
 	}
 
+	
 }

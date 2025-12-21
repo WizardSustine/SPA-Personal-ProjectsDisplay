@@ -19,5 +19,8 @@ public class Project {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;
-
+    private String project;
+    private String state;
+    private String photo;
+    private String[] tecnology;
 }

@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Bean;
 import com.personalspa.personalpage.controllers.ProjectController;
 import com.personalspa.personalpage.entities.Project;
 import com.personalspa.personalpage.repositories.ProjectRepo;
-*/
+*//* 
 @Configuration
 public class LoadDatabase {
 
@@ -27,5 +27,5 @@ public class LoadDatabase {
       log.info("Preloading " + repo.save(new Project(1, "Bilbo Baggins")));
       log.info("Preloading " + repo.save(new Project(2, "Frodo Baggins")));
     };
-  }*/
-}
+  }
+} */

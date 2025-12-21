@@ -41,17 +41,17 @@ public class ProjectController {
             .orElseThrow(() -> new ProjectNotFoundException(id));
     }
 
-    @GetMapping("/all")
+    @GetMapping("/projects/all")
     public List<Project> getAll () {
         return projectService.findAll();
     }
 
-    @PostMapping("/project")
+    @PostMapping("/project/save")
     Project newProject(@RequestBody Project newProject) {
         return projectService.save(newProject);
     }
 
-    @PutMapping("/project/{id}")
+    @PutMapping("/project/update/{id}")
     Project replaceProject(@RequestBody Project newProject, @RequestParam Long id) {
 
         return projectService.findById(id)
@@ -65,7 +65,7 @@ public class ProjectController {
             });
     }
 
-    @DeleteMapping("/project/{id}")
+    @DeleteMapping("/project/delete/{id}")
     public void deleteProject(@RequestParam Long id) {
         projectService.deleteById(id);
     }

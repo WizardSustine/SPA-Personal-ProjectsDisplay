@@ -1,2 +1,5 @@
 # MODELOSIMPLE-Controller-Repository-service
-Springboot con SQL - [API REST] [maven; JPA; H2; lombok] 
+Iniciador CRUD 
+Springboot MySQL 
+Logueo con Spring Security encripted password
+[API REST] [Spring Security; maven; JPA; H2; lombok]
