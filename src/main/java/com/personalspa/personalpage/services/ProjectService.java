@@ -31,8 +31,17 @@ public class ProjectService implements IProjectService{
         return projectRepo.findAll();
     }
     @Override
-    public Project updateProject(Project project) {    
-        return projectRepo.save(project);
+    public Project updateProject(Long id, Project project) {    
+        Project thisProject = projectRepo.findById(id)
+            .orElseThrow(() -> new RuntimeException("Project not found"));
+        
+        thisProject.setName(project.getName());
+        thisProject.setPhoto(project.getPhoto());
+        thisProject.setProject(project.getProject());
+        thisProject.setState(project.getState());
+        thisProject.setTechnology(project.getTechnology());
+
+        return projectRepo.save(thisProject);
     }
     @Override
     public void deleteById(Long id) {

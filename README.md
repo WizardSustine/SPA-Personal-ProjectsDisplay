@@ -1,5 +1,4 @@
-# MODELOSIMPLE-Controller-Repository-service
-Iniciador CRUD 
-Springboot MySQL 
-Logueo con Spring Security encripted password
-[API REST] [Spring Security; maven; JPA; H2; lombok]
+# MODELOSIMPLE - API REST con JWT
+Base de una API con registro, logueo y autenticación por token (JWT).
+Persistencia en base de datos con MySQL
+Roles y reglas de restricción acceso en EndPoints bien definidos

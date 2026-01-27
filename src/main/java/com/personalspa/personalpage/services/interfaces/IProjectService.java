@@ -9,6 +9,6 @@ public interface IProjectService {
     Optional<Project> findById(Long id);
     Project save(Project project);
     List<Project> findAll();
-    Project updateProject(Project project);
+    Project updateProject(Long id, Project project);
     void deleteById(Long id);
 }
