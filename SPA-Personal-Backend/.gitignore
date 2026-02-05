@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+HEAD
 # See https://docs.github.com/get-started/getting-started-with-git/ignoring-files for more about ignoring files.
 
 # Compiled output
@@ -42,7 +42,6 @@ __screenshots__/
 # System files
 .DS_Store
 Thumbs.db
-=======
 HELP.md
 target/
 .mvn/wrapper/maven-wrapper.jar
@@ -76,4 +75,4 @@ build/
 
 ### VS Code ###
 .vscode/
->>>>>>> 129cf5a406c7a3e0858ea6da16ebc0ded15cc13d
+ 129cf5a406c7a3e0858ea6da16ebc0ded15cc13d
