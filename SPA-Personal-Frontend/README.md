@@ -1,6 +1,6 @@
 # Angular SPA Personal
-Frontend para exhibición de proyectos, con login y registro basado en JWT. Cuenta con una sección 'acerca de' y será ampliado para crear un funnel business.</br>
-***
+Frontend para exhibición de proyectos, con login y registro basado en JWT. Cuenta con una sección 'acerca de' y será ampliado para crear un funnel business.
+
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.0.2.
 
 ### Development server
@@ -56,12 +56,5 @@ ng e2e
 Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
 
 ### Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
-
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
 
 For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.

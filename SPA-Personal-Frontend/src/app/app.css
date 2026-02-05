@@ -1,0 +1,62 @@
+:root{
+	--bg:#f6f7fb;
+	--card-bg:#ffffff;
+    --muted:rgba(0,0,0,0.65);
+    --nav-height:64px;
+    --banner-height:110px;
+}
+
+.nav{ 
+    display:flex; 
+    gap:1.6rem; 
+    padding:0 1rem; 
+    height:var(--nav-height);
+    background:linear-gradient(135deg,#04013ce4 0%,#040553c7 100%); 
+    box-shadow:0 4px 12px rgba(0,91,179,0.2); 
+    align-items:center; 
+    position:sticky; 
+    top:0; 
+    z-index:100; 
+    justify-content:space-between }
+.nav a{ color:#fff; text-decoration:none; padding:10px 14px; border-radius:6px; font-weight:500; font-size:0.95rem; transition:all .2s ease }
+.nav a:hover{ background:rgba(255,255,255,0.15); transform:translateY(-1px) }
+.nav a:first-child{ font-weight:700; font-size:1.1rem }
+.nav-left{ display:flex; gap:12px; align-items:center }
+.nav-right{ display:flex; gap:12px; align-items:center; margin-left:auto }
+/* make Contact link standout */
+.nav-left .contact-link{ padding:8px 12px; border-radius:8px; font-weight:600 }
+.nav-left .contact-link:hover{ background:rgba(255,255,255,0.16); transform:none }
+.user-info{ color:#fff; font-size:0.95rem; font-weight:500 }
+.badge{ background:rgba(255,255,255,0.3); color:#fff; padding:4px 8px; border-radius:4px; font-size:0.85rem; font-weight:700 }
+.logout-btn{ background:rgba(255,255,255,0.2); color:#fff; border:1px solid rgba(255,255,255,0.4); padding:8px 12px; border-radius:6px; cursor:pointer; font-weight:500; transition:all .2s ease }
+.logout-btn:hover{ background:rgba(255,255,255,0.3); border-color:#fff }
+
+main{ padding:1rem; margin-top:calc(var(--nav-height) + 8px); margin-bottom:calc(var(--banner-height) + 8px) }
+
+/* Contact form */
+.contact-form{max-width:720px;margin:18px auto;background:var(--card-bg);padding:18px;border-radius:10px;box-shadow:0 6px 18px rgba(0,0,0,0.06)}
+.contact-form h2{margin:0 0 10px 0}
+.contact-form label{display:block;font-weight:600;margin-top:10px;color:var(--muted)}
+.contact-form input,.contact-form textarea{width:100%;padding:10px;border-radius:8px;border:1px solid #e6e9ef;margin-top:6px;font-size:0.95rem}
+.contact-form textarea{min-height:120px;resize:vertical}
+.contact-form .actions{display:flex;justify-content:flex-end;margin-top:12px}
+.contact-form button{background:#007bff;color:#fff;border:none;padding:8px 14px;border-radius:8px;cursor:pointer}
+.contact-form button:hover{background:#0056b3}
+
+/* Banner area (970x90 mock) */
+.banner{height:var(--banner-height);display:flex;justify-content:center;align-items:center;z-index:95}
+.banner img{width:100%;max-width:970px;height:90px;object-fit:cover;border-radius:6px;box-shadow:0 6px 18px rgba(0,0,0,0.08)}
+
+/* Universal button styles */
+button{ font-family:inherit }
+
+@media screen AND (max-width: 1200px){
+    main, .nav{
+    width: 98%;
+};
+}
+
+@media screen AND (max-width: 600px){
+    main, .nav{
+    width: 94%;
+};}

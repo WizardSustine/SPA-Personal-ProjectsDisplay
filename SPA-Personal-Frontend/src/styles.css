@@ -1,1 +1,19 @@
 /* You can add global styles to this file, and also import other style files */
+html, body, nav, main{
+    width: 98.8%;
+    padding:0;
+    margin: 0.2rem;
+}
+html{
+    background-color: #c3c1c1bc}
+@media screen AND (max-width: 1200px){
+    html, body, nav, main{
+    width: 98%;
+};
+}
+
+@media screen AND (max-width: 600px){
+    html, body, nav, main{
+    width: 98%;
+};
+}
