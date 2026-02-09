@@ -2,15 +2,17 @@
 
 ## Resumen de Cambios
 
-Se han implementado cambios significativos en los sistemas de login, registro y gestión de usuarios para soportar tres roles: `user`, `admin` y `master`.
+Implementé cambios en los sistemas de login, registro y gestión de usuarios para soportar tres roles: `user`, `admin` y `master`.
+
+Además agregué un nuevo campo `liveUrl` a los proyectos para permitir enlazar a versiones desplegadas en producción de los proyectos.
 
 ## Backend (SPA-Personal-Backend)
 
 ### Cambios en Entidades
-- **UserApp.java**: Se añadieron getters y setters para el ID que estaban faltando
+- **UserApp.java**: Añadí getters y setters para el ID que estaban faltando
 
 ### Cambios en Controllers
-- **AuthController.java**: Ya implementa correctamente:
+- **AuthController.java**: Implementé correctamente:
   - Login con autenticación y generación de JWT con roles
   - Registro con asignación de rol por defecto `USER` (solo `user` en registro público)
   
@@ -87,7 +89,6 @@ Se han implementado cambios significativos en los sistemas de login, registro y 
 **src/app/app.html**
 - Mostrar rol del usuario (ADMIN/MASTER) cuando está autenticado
 - Link directo a `/admin/users` para admin/master
-- Badge dinámico con el rol actual
 
 ## Flujos de Uso
 
