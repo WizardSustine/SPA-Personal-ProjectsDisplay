@@ -6,31 +6,64 @@
     <path d="M544.758,474.636c-3.167-3.165-6.876-5.674-11.133-7.531c-4.257-1.854-8.734-2.783-13.425-2.783 c-4.912,0-9.47,0.957-13.671,2.865c-4.203,1.911-7.833,4.477-10.888,7.695c-3.057,3.221-5.459,6.986-7.204,11.297 c-1.747,4.313-2.62,8.816-2.62,13.507c0,4.804,0.872,9.278,2.62,13.425c1.745,4.15,4.175,7.805,7.286,10.969 c3.11,3.168,6.738,5.648,10.887,7.45c4.147,1.801,8.677,2.701,13.589,2.701c4.912,0,9.468-0.9,13.671-2.701 c4.201-1.801,7.884-4.282,11.051-7.45c3.165-3.165,5.648-6.876,7.449-11.133c1.801-4.257,2.701-8.785,2.701-13.589 c0-4.802-0.929-9.332-2.783-13.589C550.432,481.512,547.923,477.803,544.758,474.636z" style="fill:#FFF;"></path>        
     <path d="M427.534,474.636c-3.167-3.165-6.876-5.674-11.133-7.531c-4.257-1.854-8.734-2.783-13.425-2.783 c-4.912,0-9.47,0.957-13.671,2.865c-4.203,1.911-7.833,4.477-10.888,7.695c-3.057,3.221-5.459,6.986-7.204,11.297 c-1.747,4.313-2.62,8.816-2.62,13.507c0,4.804,0.872,9.278,2.62,13.425c1.745,4.15,4.175,7.805,7.286,10.969 c3.111,3.168,6.738,5.648,10.887,7.45c4.147,1.801,8.678,2.701,13.589,2.701c4.912,0,9.468-0.9,13.671-2.701 c4.2-1.801,7.884-4.282,11.051-7.45c3.165-3.165,5.648-6.876,7.449-11.133c1.801-4.257,2.701-8.785,2.701-13.589 c0-4.802-0.929-9.332-2.784-13.589C433.208,481.512,430.699,477.803,427.534,474.636z" style="fill:#FFF;"></path> 
   </svg>
-  <a routerLink="/">
+  <a routerLink="/" trackClick="home">
     <h1>Bustamante, Juan G.</h1>
     <h3>Software Developer</h3>
   </a>
+
+  <!-- Desktop Navigation -->
   <div class="nav-left">
-      <a routerLink="/about">Acerca de</a>
-      <a routerLink="/contact" class="contact-link">Contacto</a>
+    <a routerLink="/about" trackClick="about">Acerca de</a>
+    <a trackClick="admin users" *ngIf="auth.hasAnyRole(['admin', 'master'])" routerLink="/admin/users" class="admin-link" (click)="closeMenu()">Usuarios</a>
+    <a trackClick="graphics" *ngIf="auth.isAuthenticated()" routerLink="/graphics">Gráficas</a>
+    <a trackClick="contact" routerLink="/contact" class="contact-link">Contacto</a>
   </div>
   <div class="nav-right">
     <ng-container *ngIf="!auth.isAuthenticated()">
-      <a routerLink="/login">Entrar</a>
-      <a routerLink="/register">Registrarse</a>
+      <a trackClick="login" routerLink="/login">Entrar</a>
+      <a trackClick="register" routerLink="/register">Registrarse</a>
     </ng-container>
     <ng-container *ngIf="auth.isAuthenticated()">
       <span class="user-info">👤 {{ auth.user()?.email }}</span>
-      <span *ngIf="auth.hasRole('admin')" class="badge">ADMIN</span>
       <button (click)="auth.logout()" class="logout-btn">Salir</button>
     </ng-container>
   </div>
+
+  <!-- Mobile Menu Button -->
+  <button class="hamburger" [class.active]="menuOpen()" (click)="toggleMenu()" aria-label="Toggle menu">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
 </nav>
+
+<!-- Mobile Menu Dropdown -->
+<div class="mobile-menu" [class.open]="menuOpen()">
+  <a trackClick="about" routerLink="/about" (click)="closeMenu()">Acerca de</a>
+  <a trackClick="admin users" *ngIf="auth.hasAnyRole(['admin', 'master'])" routerLink="/admin/users" (click)="closeMenu()">Usuarios</a>
+  <a trackClick="graphics" *ngIf="auth.isAuthenticated()" routerLink="/graphics" (click)="closeMenu()">Gráficas</a>
+  <a trackClick="contact" routerLink="/contact" (click)="closeMenu()">Contacto</a>
+  
+  <div class="mobile-menu-divider"></div>
+  
+  <ng-container *ngIf="!auth.isAuthenticated()">
+    <a trackClick="login" routerLink="/login" (click)="closeMenu()">Entrar</a>
+    <a trackClick="register" routerLink="/register" (click)="closeMenu()">Registrarse</a>
+  </ng-container>
+  <ng-container *ngIf="auth.isAuthenticated()">
+    <div class="mobile-user-info">
+      <span>👤 {{ auth.user()?.email }}</span>
+      <span *ngIf="auth.hasAnyRole(['admin', 'master'])" class="badge">{{ auth.user()?.role?.toUpperCase() }}</span>
+    </div>
+    <button (click)="auth.logout(); closeMenu()" class="mobile-logout-btn">Salir</button>
+  </ng-container>
+</div>
+
 <main>
   <router-outlet></router-outlet>
 </main>
 <footer>
-  <div class="banner" *ngIf="banner">
+  <div trackClick="banner" class="banner" *ngIf="banner">
   <img [src]="banner.imageUrl" [alt]="banner.alt" />
 </div>
 </footer>

@@ -10,4 +10,5 @@ export interface Project {
   docsUrl?: string;
   readmeUrl?: string;
   repoUrl?: string;
+  liveUrl?: string | null;
 }

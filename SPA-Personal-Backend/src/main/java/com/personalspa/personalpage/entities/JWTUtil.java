@@ -24,11 +24,11 @@ public class JWTUtil {
     private final long EXPIRATION = 1000 * 60 * 60; // 1 hora
     private final Key key = Keys.hmacShaKeyFor(SECRET.getBytes(StandardCharsets.UTF_8));
 
-    public String generateToken(String username, List<String> roles) {
-        System.out.println("corre el generateToken" + username);
+    public String generateToken(String email, List<String> roles) {
+        System.out.println("corre el generateToken" + email);
         roles.forEach(r -> System.out.println(r));
         return Jwts.builder()
-                .setSubject(username)
+                .setSubject(email)
                 .claim("roles", roles)
                 .setIssuedAt(new Date())
                 .setExpiration(new Date(System.currentTimeMillis() + EXPIRATION))
@@ -45,8 +45,8 @@ public class JWTUtil {
                 .getBody();
     }
 
-    public String getUsername(String token) {
-        System.out.println("corre el getUsername" + token);
+    public String getEmail(String token) {
+        System.out.println("corre el getEmail" + token);
         return getClaims(token).getSubject();
     }
 

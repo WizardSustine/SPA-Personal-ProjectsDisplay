@@ -35,11 +35,17 @@ public class ProjectService implements IProjectService{
         Project thisProject = projectRepo.findById(id)
             .orElseThrow(() -> new RuntimeException("Project not found"));
         
-        thisProject.setName(project.getName());
-        thisProject.setPhoto(project.getPhoto());
-        thisProject.setProject(project.getProject());
-        thisProject.setState(project.getState());
+        thisProject.setTitle(project.getTitle());
+        thisProject.setDescription(project.getDescription());
+        thisProject.setImageUrl(project.getImageUrl());
+        thisProject.setIsPublic(project.getIsPublic());
         thisProject.setTechnology(project.getTechnology());
+        thisProject.setArgument(project.getArgument());
+        thisProject.setAttributes(project.getAttributes());
+        thisProject.setDocsUrl(project.getDocsUrl());
+        thisProject.setReadmeUrl(project.getReadmeUrl());
+        thisProject.setRepoUrl(project.getRepoUrl());
+        thisProject.setLiveUrl(project.getLiveUrl());
 
         return projectRepo.save(thisProject);
     }

@@ -3,6 +3,7 @@ package com.personalspa.personalpage.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -22,16 +23,19 @@ public class UserAppController {
     @Autowired
     private UserAppService userService;
 
+    @PreAuthorize("hasAnyRole('ADMIN','MASTER')")
     @PostMapping("/users/delete/{id}")
     public void deleteUser(@RequestParam Long id) {
         userService.deleteById(id);
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN','MASTER')")
     @PutMapping("/users/update/{id}")
     UserApp updateUser(@RequestBody UserApp newUser, @RequestParam Long id){
         return userService.updateUser(id, newUser);
     }
     
+    @PreAuthorize("hasAnyRole('ADMIN','MASTER')")
     @GetMapping("/users/all")
     public List<UserApp> getAll () {
         return userService.findAll();
@@ -41,7 +45,7 @@ public class UserAppController {
     UserApp newUser(@RequestBody UserApp newUser) {
         return userService.save(newUser);
     }
-
+    
     @GetMapping("/users/{email}")
     public UserApp getUserById(@RequestParam String email) {
         return userService.findByEmail(email)

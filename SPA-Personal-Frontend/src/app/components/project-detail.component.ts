@@ -38,6 +38,12 @@ import { ProjectService } from '../services/project.service';
       </div>
 
       <div class="links-row">
+        @if(project.liveUrl && project.liveUrl !== 'null') {
+        <a [href]="project.liveUrl" target="_blank" rel="noopener" class="link-card live-link">
+          <div class="title">🚀 Ver en vivo</div>
+          <div class="meta">Acceder al proyecto en producción</div>
+        </a>
+        }
         <a *ngIf="project.docsUrl" [href]="project.docsUrl" target="_blank" rel="noopener" class="link-card">
           <div class="title">Documentación técnica</div>
           <div class="meta">Guía y especificaciones</div>
@@ -83,7 +89,10 @@ import { ProjectService } from '../services/project.service';
 
     /* Link cards */
     .links-row{display:flex;gap:12px}
-    .link-card{flex:1;display:flex;flex-direction:column;padding:12px;border-radius:10px;background:#fff;text-decoration:none;color:#111;border:1px solid #eee;box-shadow:0 6px 18px rgba(10,10,30,0.04)}
+    .link-card{flex:1;display:flex;flex-direction:column;padding:12px;border-radius:10px;background:#fff;text-decoration:none;color:#111;border:1px solid #eee;box-shadow:0 6px 18px rgba(10,10,30,0.04);transition:all 0.3s ease}
+    .link-card:hover{transform:translateY(-4px);box-shadow:0 10px 24px rgba(10,10,30,0.08)}
+    .link-card.live-link{border-color:#28a745;background:#f0fdf4}
+    .link-card.live-link .title{color:#16a34a}
     .link-card .title{font-weight:700}
     .link-card .meta{font-size:0.9rem;color:#666}
 
@@ -122,12 +131,14 @@ export class ProjectDetailComponent implements OnInit {
                 this.router.navigate(['/']);
                 return;
             }
+            console.log('[ProjectDetail] project corre el get');
             this.project = {
                 ...p,
+                liveUrl: p.liveUrl,
                 attributes: p.attributes ?? []
             };
             this.cd.markForCheck();
-            console.log('[ProjectDetail] loaded project', p.title, " - also ", p.technology);
+            console.log('[ProjectDetail] loaded project', this.project.liveUrl);
             },
             error: err => {
             console.error(err);

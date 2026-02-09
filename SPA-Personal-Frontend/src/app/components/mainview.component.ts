@@ -6,17 +6,18 @@ import { ProjectService } from '../services/project.service';
 import { ProjectCardComponent } from './project-card.component';
 import { AboutSummaryComponent } from './about-summary.component';
 import { AuthService } from '../services/auth.service';
+import { TrackClickDirective } from "../directives/trackclick.directive";
 
 @Component({
   selector: 'mainview',
   standalone: true,
-  imports: [ProjectCardComponent, CommonModule, RouterLink, AboutSummaryComponent ],
+  imports: [ProjectCardComponent, CommonModule, RouterLink, AboutSummaryComponent, TrackClickDirective],
   template: `
   <about-summary></about-summary>
   @if (data.length > 0) {
   <div class="grid">
     <div class="card-link" *ngFor="let p of data">
-      <a [routerLink]="['/project', p.id]" class="card-inner">
+      <a [routerLink]="['/project', p.id]" class="card-inner" [trackClick]="'project ' + p.id">
         <project-card [project]="p"></project-card>
       </a>
       <div class="card-actions" *ngIf="auth.hasRole('admin')">

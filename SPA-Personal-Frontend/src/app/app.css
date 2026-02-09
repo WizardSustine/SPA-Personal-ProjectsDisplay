@@ -27,9 +27,25 @@
 .nav-left .contact-link{ padding:8px 12px; border-radius:8px; font-weight:600 }
 .nav-left .contact-link:hover{ background:rgba(255,255,255,0.16); transform:none }
 .user-info{ color:#fff; font-size:0.95rem; font-weight:500 }
-.badge{ background:rgba(255,255,255,0.3); color:#fff; padding:4px 8px; border-radius:4px; font-size:0.85rem; font-weight:700 }
 .logout-btn{ background:rgba(255,255,255,0.2); color:#fff; border:1px solid rgba(255,255,255,0.4); padding:8px 12px; border-radius:6px; cursor:pointer; font-weight:500; transition:all .2s ease }
 .logout-btn:hover{ background:rgba(255,255,255,0.3); border-color:#fff }
+
+/* Hamburger Menu */
+.hamburger{ display:none; flex-direction:column; gap:5px; background:none; border:none; cursor:pointer; padding:0; margin-left:auto }
+.hamburger span{ width:24px; height:3px; background:#fff; border-radius:2px; transition:all 0.3s ease }
+.hamburger.active span:nth-child(1){ transform:rotate(45deg) translate(8px, 8px) }
+.hamburger.active span:nth-child(2){ opacity:0 }
+.hamburger.active span:nth-child(3){ transform:rotate(-45deg) translate(7px, -7px) }
+
+/* Mobile Menu */
+.mobile-menu{ display:none; position:absolute; top:var(--nav-height); left:0; right:0; background:linear-gradient(135deg,#04013ce4 0%,#040553c7 100%); box-shadow:0 4px 12px rgba(0,91,179,0.2); flex-direction:column; padding:12px 0; gap:0; max-height:0; overflow:hidden; transition:max-height 0.3s ease; z-index:99 }
+.mobile-menu.open{ max-height:500px; overflow-y:auto }
+.mobile-menu a{ color:#fff; text-decoration:none; padding:12px 1rem; border-radius:0; font-weight:500; font-size:0.95rem; transition:all .2s ease; display:block; border-left:4px solid transparent }
+.mobile-menu a:hover{ background:rgba(255,255,255,0.15); border-left-color:#fff }
+.mobile-menu-divider{ height:1px; background:rgba(255,255,255,0.2); margin:8px 0 }
+.mobile-user-info{ padding:12px 1rem; color:#fff; font-size:0.9rem; display:flex; align-items:center; gap:8px }
+.mobile-logout-btn{ background:rgba(255,255,255,0.2); color:#fff; border:1px solid rgba(255,255,255,0.4); padding:8px 12px; margin:0 1rem 12px 1rem; border-radius:6px; cursor:pointer; font-weight:500; transition:all .2s ease; width:calc(100% - 2rem) }
+.mobile-logout-btn:hover{ background:rgba(255,255,255,0.3); border-color:#fff }
 
 main{ padding:1rem; margin-top:calc(var(--nav-height) + 8px); margin-bottom:calc(var(--banner-height) + 8px) }
 
@@ -50,6 +66,13 @@ main{ padding:1rem; margin-top:calc(var(--nav-height) + 8px); margin-bottom:calc
 /* Universal button styles */
 button{ font-family:inherit }
 
+@media screen AND (max-width: 768px){
+    .nav-left, .nav-right{ display:none }
+    .hamburger{ display:flex }
+    .mobile-menu{ display:none }
+    .mobile-menu.open{ display:block }
+}
+
 @media screen AND (max-width: 1200px){
     main, .nav{
     width: 98%;
@@ -59,4 +82,9 @@ button{ font-family:inherit }
 @media screen AND (max-width: 600px){
     main, .nav{
     width: 94%;
-};}
+};
+    svg { width:60px !important; height:60px !important; margin:0;  }
+    .nav a[routerLink="/"] { padding:0 }
+    .nav a[routerLink="/"] h1{ font-size:0.95rem; margin:0 }
+    .nav a[routerLink="/"] h3{ font-size:0.75rem; margin:0}
+}

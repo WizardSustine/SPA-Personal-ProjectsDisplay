@@ -72,7 +72,7 @@ public class AuthController {
         
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
-                        request.username(),
+                        request.email(),
                         request.password()
                 )
         );

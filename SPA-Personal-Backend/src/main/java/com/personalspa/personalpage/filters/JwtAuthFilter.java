@@ -29,10 +29,10 @@ public class JwtAuthFilter extends OncePerRequestFilter{
         this.jwtUtil = jwtUtil;
     }
 
+    // To allow login and register request
    @Override
     protected boolean shouldNotFilter(HttpServletRequest request) {
         String path = request.getServletPath();
-        System.out.println("corre el shouldNotFilter" + path);
         return path.startsWith("/auth/");
     }
 
@@ -41,9 +41,10 @@ public class JwtAuthFilter extends OncePerRequestFilter{
         @NonNull HttpServletRequest request, 
         @NonNull HttpServletResponse response, 
         @NonNull FilterChain filterChain) throws ServletException, IOException {
-            
+        
+        
         String authHeader = request.getHeader("Authorization");
-
+        
         if (authHeader == null || !authHeader.startsWith("Bearer ")) {
             filterChain.doFilter(request, response);
             return;
@@ -54,18 +55,16 @@ public class JwtAuthFilter extends OncePerRequestFilter{
         try {
             Claims claims = jwtUtil.getClaims(token);
 
-            String username = claims.getSubject();
-            String roles = claims.get("roles", String.class);
-
+            String email = claims.getSubject();
+            List<String> roles = claims.get("roles", List.class);
             List<GrantedAuthority> authorities =
-                    List.of(roles.split(",")).stream()
-                        .map(r -> "ROLE_" + r.trim())
+                    roles.stream()
                         .map(role -> (GrantedAuthority) new SimpleGrantedAuthority(role))
                         .toList();
 
-            UsernamePasswordAuthenticationToken authentication =
+                        UsernamePasswordAuthenticationToken authentication =
                     new UsernamePasswordAuthenticationToken(
-                            username,
+                            email,
                             null,
                             authorities
                     );

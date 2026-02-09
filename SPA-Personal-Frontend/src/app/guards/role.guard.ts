@@ -5,7 +5,7 @@ import { AuthService } from '../services/auth.service';
 export const adminGuard: CanActivateFn = (route, state) => {
   const auth = inject(AuthService);
   const router = inject(Router);
-  if (auth.hasRole('admin')) return true;
+  if (auth.hasAnyRole(['admin', 'master'])) return true;
   router.navigate(['/login']);
   return false;
 };

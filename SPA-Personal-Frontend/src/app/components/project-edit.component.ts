@@ -38,6 +38,9 @@ import { Project } from '../models/project.model';
         <label>Repo URL</label>
         <input [(ngModel)]="model.repoUrl" name="repoUrl" />
 
+        <label>URL en Vivo (proyecto desplegado)</label>
+        <input [(ngModel)]="model.liveUrl" name="liveUrl" placeholder="https://ejemplo.com" />
+
         <fieldset class="images-section">
           <legend>Imágenes del Proyecto</legend>
           <div *ngFor="let img of attributes; let i = index" class="image-item">

@@ -77,7 +77,8 @@ export class ProjectService {
                 ),
                 docsUrl: item.docsUrl,
                 readmeUrl: item.readmeUrl,
-                repoUrl: item.repoUrl
+                repoUrl: item.repoUrl,
+                liveUrl: item.liveUrl
                 }) as Project
             ),
         catchError(err => {

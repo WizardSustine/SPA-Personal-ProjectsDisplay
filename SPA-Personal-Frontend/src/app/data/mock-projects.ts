@@ -16,7 +16,8 @@ export const mockProjects: Project[] = [
     ],
     docsUrl: 'https://example.com/docs/portfolio',
     readmeUrl: 'https://example.com/readme/portfolio',
-    repoUrl: 'https://github.com/example/portfolio'
+    repoUrl: 'https://github.com/example/portfolio',
+    liveUrl: 'https://portfolio-example.com'
   },
   {
     id: '2',
@@ -33,7 +34,8 @@ export const mockProjects: Project[] = [
     ],
     docsUrl: 'https://example.com/docs/fitness',
     readmeUrl: 'https://example.com/readme/fitness',
-    repoUrl: 'https://github.com/example/fitness-app'
+    repoUrl: 'https://github.com/example/fitness-app',
+    liveUrl: 'https://fitness-app-example.com'
   },
   {
     id: '3',

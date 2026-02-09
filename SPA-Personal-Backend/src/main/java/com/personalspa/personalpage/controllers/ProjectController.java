@@ -3,9 +3,11 @@ package com.personalspa.personalpage.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 /*import org.springframework.web.bind.annotation.CrossOrigin;*/
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.personalspa.personalpage.handlers.ProjectNotFoundException;
@@ -36,7 +38,7 @@ public class ProjectController {
 	}
 
     @GetMapping("/projects/{id}")
-    public Project getProjectById(@RequestParam Long id) {
+    public Project getProjectById(@PathVariable  Long id) {
         return projectService.findById(id)
             .orElseThrow(() -> new ProjectNotFoundException(id));
     }
@@ -46,25 +48,20 @@ public class ProjectController {
         return projectService.findAll();
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN','MASTER')")
     @PostMapping("/project/save")
-    Project newProject(@RequestBody Project newProject) {
+    public Project newProject(@RequestBody Project newProject) {
+        System.out.println("acá intento guardar un proyecto");
         return projectService.save(newProject);
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN','MASTER')")
     @PutMapping("/project/update/{id}")
-    Project replaceProject(@RequestBody Project newProject, @RequestParam Long id) {
-
-        return projectService.findById(id)
-            .map(project -> {
-                project.setName(newProject.getName());
-                return projectService.save(project);
-            })
-            .orElseGet(() -> {
-                newProject.setId(id);
-                return projectService.save(newProject);
-            });
+    Project udpateProject(@RequestBody Project newProject, @RequestParam Long id) {
+        return projectService.updateProject(id, newProject);
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN','MASTER')")
     @DeleteMapping("/project/delete/{id}")
     public void deleteProject(@RequestParam Long id) {
         projectService.deleteById(id);
