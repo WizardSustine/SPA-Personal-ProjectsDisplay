@@ -22,6 +22,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 
+/**
+ * Controlador REST para autenticacion y autorizacion.
+ * Maneja registro de nuevos usuarios y login con generacion de JWT tokens.
+ */
 @RestController
 @RequestMapping("/auth")
 public class AuthController {
@@ -38,6 +42,10 @@ public class AuthController {
         this.encoder = encoder;
     }
 
+    /**
+     * Registra un nuevo usuario en el sistema.
+     * Valida que username y email sean unicos antes de guardar.
+     */
     @PostMapping("/register")
     public ResponseEntity<?> register(@RequestBody RegisterRequest request) {
         if (userService.existsByUsername(request.username())) {
@@ -67,6 +75,10 @@ public class AuthController {
         return ResponseEntity.ok("User registered successfully");
     }
     
+    /**
+     * Autentica un usuario y genera un JWT token.
+     * El token contiene email y roles para posterior validacion.
+     */
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody LoginRequest request) {
         

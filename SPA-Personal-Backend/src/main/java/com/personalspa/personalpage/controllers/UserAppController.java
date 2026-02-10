@@ -16,6 +16,10 @@ import com.personalspa.personalpage.entities.UserApp;
 import com.personalspa.personalpage.handlers.UsernameNotFoundException;
 import com.personalspa.personalpage.services.UserAppService;
 
+/**
+ * Controlador REST para administracion de usuarios.
+ * Endpoint protegidos requieren autenticacion y roles de administrador.
+ */
 @RestController
 @RequestMapping("/manage")
 public class UserAppController {

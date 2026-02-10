@@ -17,6 +17,10 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
 
+/**
+ * Utilidad para generacion, validacion y extraccion de informacion de JWT tokens.
+ * Usa HMAC-SHA256 con clave de 256 bits. Tokens expiran en 1 hora.
+ */
 @Component
 public class JWTUtil {
 
@@ -24,6 +28,10 @@ public class JWTUtil {
     private final long EXPIRATION = 1000 * 60 * 60; // 1 hora
     private final Key key = Keys.hmacShaKeyFor(SECRET.getBytes(StandardCharsets.UTF_8));
 
+    /**
+     * Genera un JWT token con email como subject y lista de roles como claim.
+     * Token valido por 1 hora desde su emision.
+     */
     public String generateToken(String email, List<String> roles) {
         System.out.println("corre el generateToken" + email);
         roles.forEach(r -> System.out.println(r));
@@ -36,6 +44,7 @@ public class JWTUtil {
                 .compact();
     }
 
+    /** Extrae los claims (informacion) del payload de un JWT token */
     public Claims getClaims(String token) {
         System.out.println("corre el getClaims" + token);
         return Jwts.parserBuilder()
@@ -45,17 +54,20 @@ public class JWTUtil {
                 .getBody();
     }
 
+    /** Extrae el email (subject) del JWT token */
     public String getEmail(String token) {
         System.out.println("corre el getEmail" + token);
         return getClaims(token).getSubject();
     }
 
+    /** Extrae la lista de roles del JWT token */
     @SuppressWarnings("unchecked")
     public List<String> getRoles(String token) {
         System.out.println("corre el getRoles" + token);
         return (List<String>) getClaims(token).get("roles");
     }
 
+    /** Valida si un JWT token es valido y no ha expirado */
     public boolean isTokenValid(String token) {
         System.out.println("corre el isTokenValid" + token);
         try {

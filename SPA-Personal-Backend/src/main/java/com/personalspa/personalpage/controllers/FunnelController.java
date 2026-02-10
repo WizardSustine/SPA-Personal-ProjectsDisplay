@@ -14,6 +14,10 @@ import org.springframework.web.bind.annotation.RestController;
 import com.personalspa.personalpage.entities.Funnel;
 import com.personalspa.personalpage.services.FunnelService;
 
+/**
+ * Controlador REST para gestion del funnel de conversion.
+ * Expone endpoints para guardar, recuperar y eliminar funnels de navegacion.
+ */
 @RestController
 @RequestMapping("/funnel")
 public class FunnelController {
@@ -26,16 +30,19 @@ public class FunnelController {
         funnelService.deleteById(id);
     }
 
+    /** Obtiene todos los funnels registrados */
     @GetMapping("/all")
     public List<Funnel> getAllFunnel() {
         return funnelService.findAll();
     }
 
+    /** Guarda un nuevo funnel de navegacion de visitante */
     @PostMapping("/save")
     public Funnel saveFunnel(@RequestBody Funnel funnel) {
         return funnelService.save(funnel);
     }
 
+    /** Obtiene un funnel especifico por su ID */
     @GetMapping("/{id}")
     public Optional<Funnel> getFunnelById(@PathVariable String id) {
         return funnelService.findById(id);

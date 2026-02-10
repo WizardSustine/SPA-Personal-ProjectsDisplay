@@ -7,6 +7,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 
+// Entidad de dominio que representa un usuario de la aplicacion.
 @Entity
 public class UserApp {
 
@@ -26,6 +27,7 @@ public class UserApp {
     @Column(nullable = false)
     private String roles;
 
+    // Constructor sin argumentos
     public UserApp(){
     }
 

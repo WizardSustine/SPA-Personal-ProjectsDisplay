@@ -11,6 +11,10 @@ import com.personalspa.personalpage.repositories.UserAppRepo;
 
 import jakarta.transaction.Transactional;
 
+/**
+ * Servicio de negocio para gestion de usuarios.
+ * Proporciona operaciones CRUD y validaciones de existencia de usuarios.
+ */
 @Service
 @Transactional
 public class UserAppService {
@@ -18,14 +22,17 @@ public class UserAppService {
     @Autowired
     private UserAppRepo userAppRepo;
 
+    /** Busca un usuario por email */
     public Optional<UserApp> findByEmail(String email) {
         return userAppRepo.findByEmail(email);
     }  
 
+    /** Busca un usuario por ID */
     public Optional<UserApp> findById(Long id) {
         return userAppRepo.findById(id);
     }  
 
+    /** Busca un usuario por nombre de usuario */
     public Optional<UserApp> findByUsername(String username) {
         return userAppRepo.findByUsername(username);
     }  

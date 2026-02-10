@@ -37,17 +37,20 @@ public class ProjectController {
 		return "Greetings from Spring Boot!";
 	}
 
+    /** Obtiene un proyecto por su ID. Acceso publico. */
     @GetMapping("/projects/{id}")
     public Project getProjectById(@PathVariable  Long id) {
         return projectService.findById(id)
             .orElseThrow(() -> new ProjectNotFoundException(id));
     }
 
+    /** Obtiene todos los proyectos. Acceso publico. */
     @GetMapping("/projects/all")
     public List<Project> getAll () {
         return projectService.findAll();
     }
 
+    /** Crea un nuevo proyecto. Requiere rol ADMIN o MASTER. */
     @PreAuthorize("hasAnyRole('ADMIN','MASTER')")
     @PostMapping("/project/save")
     public Project newProject(@RequestBody Project newProject) {
@@ -55,12 +58,14 @@ public class ProjectController {
         return projectService.save(newProject);
     }
 
+    /** Actualiza un proyecto existente. Requiere rol ADMIN o MASTER. */
     @PreAuthorize("hasAnyRole('ADMIN','MASTER')")
     @PutMapping("/project/update/{id}")
     Project udpateProject(@RequestBody Project newProject, @RequestParam Long id) {
         return projectService.updateProject(id, newProject);
     }
 
+    /** Elimina un proyecto. Requiere rol ADMIN o MASTER. */
     @PreAuthorize("hasAnyRole('ADMIN','MASTER')")
     @DeleteMapping("/project/delete/{id}")
     public void deleteProject(@RequestParam Long id) {

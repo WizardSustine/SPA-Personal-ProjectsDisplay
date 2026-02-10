@@ -3,6 +3,10 @@ import { Injectable, signal } from '@angular/core';
 import { Funnel } from '../models/funnel.model';
 import { catchError, map, Observable, of } from 'rxjs';
 
+/**
+ * Servicio para gestion del funnel de conversion.
+ * Registra rutas de navegacion de visitantes y analiza patrones de comportamiento.
+ */
 // Service to backup user interactions and funnel paths
 @Injectable({ providedIn: 'root' })
 export class FunnelPathService {
@@ -12,6 +16,7 @@ export class FunnelPathService {
 
     constructor(private http: HttpClient) {    }
 
+    /** Guarda un nuevo funnel con las rutas visitadas */
     postFunnel(f: Partial<Funnel>): Observable<Funnel> {
         if (!f) {
             console.error('Funnel is not initialized');
@@ -24,6 +29,7 @@ export class FunnelPathService {
         return this.http.post<Funnel>(`${this.base}/funnel/save`, f);
     }
 
+    /** Obtiene todos los funnels registrados en el sistema */
     getAllFunnel(): Observable<Funnel[]> {
         return this.http.get<any[]>(`${this.base}/funnel/all`).pipe(
                 map(data =>
@@ -41,6 +47,7 @@ export class FunnelPathService {
             );
     }
 
+    /** Obtiene un funnel especifico por su ID de sesion */
     getFunnelById(id: string): Observable<Funnel> {
         return this.http.get<any>(`${this.base}/funnel/${id}`).pipe(
                 map(response => ({

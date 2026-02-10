@@ -11,6 +11,10 @@ import org.springframework.stereotype.Service;
 
 import com.personalspa.personalpage.entities.UserApp;
 
+/**
+ * Servicio que carga los detalles del usuario para verificacion de credenciales.
+ * Implementa UserDetailsService de Spring Security.
+ */
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
     
@@ -20,6 +24,10 @@ public class CustomUserDetailsService implements UserDetailsService {
         this.userService = userService;
     }
 
+    /**
+     * Carga los detalles del usuario por email.
+     * Retorna un UserDetails con email, password y autoridades para Spring Security.
+     */
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         UserApp user = userService.findByEmail(email)

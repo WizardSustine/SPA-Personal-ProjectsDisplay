@@ -1,0 +1,183 @@
+# Documentación Técnica - SPA Personal Projects Display
+
+Este directorio contiene la documentación técnica completa del proyecto.
+
+## 📁 Contenido
+
+### 1. **ARCHITECTURE.md**
+Descripción detallada de la arquitectura del sistema incluyendo:
+- Stack tecnológico (Angular 18, Spring Boot 3, MySQL)
+- Estructura de capas (Frontend, Backend, Database)
+- Componentes principales del backend y frontend
+- Flujos de datos (autenticación, proyectos, funnel)
+- Modelo de base de datos
+- Patrones de diseño implementados
+- Seguridad y autenticación JWT
+- Mejoras futuras recomendadas
+
+**Ideal para:** Entender el proyecto "desde 10,000 pies de altura"
+
+---
+
+### 2. **DESIGN.md**
+Especificaciones técnicas detalladas incluyendo:
+- Estructura de servicios (responsabilidades y métodos)
+- Estructura de controladores (endpoints y rutas)
+- Autenticación y autorización JWT
+- Arquitectura Angular 18 (Signals, Guards, etc.)
+- Modelos de datos (interfaces TypeScript)
+- Servicios frontend (AuthService, ProjectService, etc.)
+- HTTP Interceptores y headers
+- Error handling
+- Performance & optimizaciones
+- Consideraciones de seguridad
+
+**Ideal para:** Desarrolladores que necesitan entender detalles técnicos específicos
+
+---
+
+### 3. **Diagramas Mermaid**
+Se han renderizado 3 diagramas visuales:
+
+#### 3.1 Arquitectura General
+Muestra la interacción entre:
+- Frontend (Angular components, services, guards)
+- Network Layer (HTTP + JWT Auth)
+- Backend (Spring Boot controllers, services, repositories)
+- Database (MySQL)
+
+#### 3.2 Flujo de Autenticación (Sequence Diagram)
+Detalla los 3 flujos principales:
+1. **Registro:** Validación → Encriptación → Almacenamiento → Auto-login
+2. **Login:** Validación → Generación JWT → Decodificación → Storage
+3. **Request Protegido:** Token validation → SecurityContext → Processing
+
+#### 3.3 Diagrama de Capas
+Visualiza la arquitectura por capas:
+- Presentation Layer (Componentes Angular)
+- Logic Layer (Servicios)
+- Protection Layer (Guards de ruta)
+- Data Layer (Modelos)
+- Backend layers (Controllers → Services → Repositories → Entities)
+- Database layer (MySQL)
+
+---
+
+## 📝 Comentarios en Código
+
+Se han agregado comentarios documentales breves a:
+
+### Backend (Java/Spring Boot)
+- ✅ **Entidades:** UserApp, Project, Funnel
+- ✅ **Servicios:** ProjectService, UserAppService, FunnelService, CustomUserDetailsService
+- ✅ **Controladores:** AuthController, ProjectController, UserAppController, FunnelController
+- ✅ **Utilidades:** JWTUtil, IProjectService
+- ✅ **Interfaces:** IProjectService
+
+Formato: `/** Breve descripción de responsabilidad */`
+
+### Frontend (TypeScript/Angular)
+- ✅ **Modelos:** UserAuth, UserPayload, LoginResponse, Project, Funnel
+- ✅ **Servicios:** AuthService, ProjectService, FunnelPathService
+- ✅ **Guards:** authGuard, adminGuard
+- ✅ **Componentes:** App root component
+- ✅ **Directivas:** TrackClickDirective
+
+Formato: `/** Breve descripción de responsabilidad */`
+
+---
+
+## 🏗️ Estructura del Proyecto
+
+```
+SPA-Personal-ProjectsDisplay/
+├── docs/                          ← 📍 NUEVA CARPETA
+│   ├── ARCHITECTURE.md            ← 📍 NUEVO
+│   ├── DESIGN.md                  ← 📍 NUEVO
+│   └── README.md                  ← 📍 Este archivo
+│
+├── SPA-Personal-Backend/
+│   └── src/main/java/com/personalspa/personalpage/
+│       ├── entities/              ✅ Comentarios agregados
+│       ├── services/              ✅ Comentarios agregados
+│       ├── controllers/           ✅ Comentarios agregados
+│       └── ...
+│
+└── SPA-Personal-Frontend/
+    └── src/app/
+        ├── models/                ✅ Comentarios agregados
+        ├── services/              ✅ Comentarios agregados
+        ├── guards/                ✅ Comentarios agregados
+        ├── components/            ✅ Componentes documentados
+        └── directives/            ✅ Comentarios agregados
+```
+
+---
+
+## 🔍 Cómo Usar Esta Documentación
+
+### Para Nuevos Desarrolladores
+1. Lee [ARCHITECTURE.md](./ARCHITECTURE.md) para entender el proyecto
+2. Visualiza los diagramas Mermaid para ver flujos
+3. Lee [DESIGN.md](./DESIGN.md) para detalles técnicos
+
+### Para Revisión de Código
+1. Consulta los comentarios agregados en cada clase/método
+2. Revisa la estructura de carpetas en ARCHITECTURE.md
+3. Verifica patrones de diseño en DESIGN.md
+
+### Para Mantenimiento
+1. Mantén los comentarios sincronizados con cambios de código
+2. Actualiza diagramas si cambia la arquitectura
+3. Lee la sección "Mejoras Futuras" en ARCHITECTURE.md
+
+---
+
+## 📚 Recursos Adicionales
+
+### Backend
+- Application properties: `application.properties`
+- Maven config: `pom.xml`
+- Security config: `SecurityConfig.java`
+
+### Frontend
+- Angular routes: `app.routes.ts`
+- Proxy config: `proxy.conf.json`
+- Global styles: `styles.css`
+
+---
+
+## ✅ Checklist de Documentación
+
+- [x] Documentación arquitectónica (ARCHITECTURE.md)
+- [x] Documentación técnica detallada (DESIGN.md)
+- [x] Diagramas Mermaid (3 diagramas)
+- [x] Comentarios en servicios backend
+- [x] Comentarios en controladores backend
+- [x] Comentarios en entidades backend
+- [x] Comentarios en servicios frontend
+- [x] Comentarios en modelos frontend
+- [x] Comentarios en guards frontend
+- [x] Comentarios en directivas frontend
+- [x] README de documentación
+
+---
+
+## 📞 Contacto & Actualizaciones
+
+Esta documentación fue creada el **09 de Febrero de 2026**.
+
+**Última actualización:** Febrero 2026
+
+Para mantener la documentación actualizada:
+1. Revisa los archivos después de cambios significativos
+2. Actualiza diagramas si cambia la arquitectura
+3. Agrega comentarios a nuevo código
+4. Documenta nuevas features
+
+---
+
+**¿Necesitas más detalle sobre algo?** Consulta:
+- ¿Qué hace un componente específico? → Busca en [DESIGN.md](./DESIGN.md)
+- ¿Cómo funciona la autenticación? → Lee el flujo en [ARCHITECTURE.md](./ARCHITECTURE.md)
+- ¿Cómo está estructurado el código? → Revisa los diagramas Mermaid

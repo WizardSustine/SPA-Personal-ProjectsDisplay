@@ -17,6 +17,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.MapKeyColumn;
 import jakarta.persistence.Table;
 
+// Entidad de dominio que representa un proyecto en el portfolio.
 @Entity
 @Table(name = "project")
 public class Project {
@@ -41,7 +42,10 @@ public class Project {
     private String repoUrl;
     private String liveUrl;
 
+    // Constructor sin argumentos 
     public Project(){}
+    
+    // Constructor con todos sus campos 
     public Project(String title, String description, String imageUrl, boolean isPublic, List<String> technology,
     String argument, Map<String, String> attributes, String docsUrl, String readmeUrl, String repoUrl, String liveUrl){
         this.title = title;

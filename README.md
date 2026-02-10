@@ -57,8 +57,8 @@ La aplicación web tiene como objetivo exhibir proyectos y funcionalidades
 ### Instalación
 
 1. **Clonar el repositorio:**
-   ```bash
-   git clone [https://github.com/WizardSustine/SPA-Personal-ProjectsDisplay.git](https://github.com/WizardSustine/SPA-Personal-ProjectsDisplay.git)
+   
+   git clone [SPA Personal ProjectsDisplay](https://github.com/WizardSustine/SPA-Personal-ProjectsDisplay.git)
 
    
 2. **Prueba local:**

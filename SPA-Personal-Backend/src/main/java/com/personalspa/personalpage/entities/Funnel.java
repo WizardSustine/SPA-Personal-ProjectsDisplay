@@ -7,6 +7,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
+// Entidad de dominio que representa el funnel business (trayectoria del visitante).
 @Entity
 @Table(name = "funnel")
 public class Funnel {
@@ -17,7 +18,9 @@ public class Funnel {
     @Column(columnDefinition = "MEDIUMTEXT")
     private List<String> visitorPaths;
 
+    // Constructor sin argumentos 
     public Funnel() {}
+    // Constructor con todos sus campos
     public Funnel(String id, Long createdAt, Long endAt, List<String> visitorPaths) {
         this.id = id;
         this.createdAt = createdAt;

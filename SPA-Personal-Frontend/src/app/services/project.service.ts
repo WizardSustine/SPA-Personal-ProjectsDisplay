@@ -12,6 +12,10 @@ function authHeader(): Record<string, string> {
   return token ? { Authorization: `Bearer ${token}` } : {};
 }
 
+/**
+ * Servicio para operaciones CRUD de proyectos.
+ * Realiza llamadas HTTP al backend y proporciona fallback a datos mock si falla.
+ */
 @Injectable({ providedIn: 'root' })
 export class ProjectService {
     private base = "/api";//apiUrl;
@@ -19,6 +23,7 @@ export class ProjectService {
     constructor(private http: HttpClient) {}
 
     // Helpers
+    /** Construye headers HTTP con token JWT para solicitudes autenticadas */
     private headers(): HttpHeaders {
         return new HttpHeaders({
         'Content-Type': 'application/json',
@@ -27,6 +32,7 @@ export class ProjectService {
     }
 
     // GET ALL
+    /** Obtiene todos los proyectos. Si falla, retorna datos mock. */
     getAll(): Observable<Project[]> {
         console.log('[ProjectService] getAll()');
 
@@ -59,6 +65,7 @@ export class ProjectService {
     }
 
     // GET BY ID
+    /** Obtiene un proyecto por ID. Mapea atributos de Map a Array. */
     get(id: string): Observable<Project | null> {
         return this.http.get<any>(`${this.base}/projects/${id}`).pipe(
             map(item => ({
@@ -90,6 +97,7 @@ export class ProjectService {
     }
 
     // CREATE
+    /** Crea un nuevo proyecto. Requiere autenticacion y rol de admin. */
     create(p: Partial<Project>): Observable<Project> {
         console.log("this is the authHeader of create" + authHeader);
         return this.http.post<Project>(
@@ -110,6 +118,7 @@ export class ProjectService {
     }
 
     // UPDATE
+    /** Actualiza un proyecto existente. Requiere autenticacion. */
     update(id: string, p: Partial<Project>): Observable<Project> {      
         
         console.log("this is the authHeader of update" + JSON.stringify(this.headers()));
@@ -131,6 +140,7 @@ export class ProjectService {
     }
 
     // DELETE
+    /** Elimina un proyecto por ID. Requiere autenticacion. */
     delete(id: string): Observable<boolean> {
         return this.http.delete<void>(
             `${this.base}/project/delete/${id}`,
