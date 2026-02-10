@@ -63,18 +63,15 @@ Visualiza la arquitectura por capas:
 
 ---
 
-## 📝 Comentarios en Código
+## 🔗 Fuentes Mermaid
+Los fuentes Mermaid están disponibles en la carpeta `docs/diagrams/`:
 
-Se han agregado comentarios documentales breves a:
+- `architecture.mmd` - [Diagrama de Arquitectura](docs/diagrams/architecture.mmd)
+- `auth-flow.mmd` - [Flujo de Autenticación (secuencia)](docs/diagrams/auth-flow.mmd)
+- `layers.mmd` - [Diagrama de Capas](docs/diagrams/layers.mmd)
 
-### Backend (Java/Spring Boot)
-- ✅ **Entidades:** UserApp, Project, Funnel
-- ✅ **Servicios:** ProjectService, UserAppService, FunnelService, CustomUserDetailsService
-- ✅ **Controladores:** AuthController, ProjectController, UserAppController, FunnelController
-- ✅ **Utilidades:** JWTUtil, IProjectService
-- ✅ **Interfaces:** IProjectService
+Si tu plataforma (GitHub/GitLab) soporta Mermaid, estos archivos se renderizarán automáticamente. Si quieres archivos SVG renderizados, dime y los genero.
 
-Formato: `/** Breve descripción de responsabilidad */`
 
 ### Frontend (TypeScript/Angular)
 - ✅ **Modelos:** UserAuth, UserPayload, LoginResponse, Project, Funnel
@@ -83,7 +80,6 @@ Formato: `/** Breve descripción de responsabilidad */`
 - ✅ **Componentes:** App root component
 - ✅ **Directivas:** TrackClickDirective
 
-Formato: `/** Breve descripción de responsabilidad */`
 
 ---
 
@@ -114,23 +110,12 @@ SPA-Personal-ProjectsDisplay/
 
 ---
 
-## 🔍 Cómo Usar Esta Documentación
+## Documentación
 
 ### Para Nuevos Desarrolladores
 1. Lee [ARCHITECTURE.md](./ARCHITECTURE.md) para entender el proyecto
-2. Visualiza los diagramas Mermaid para ver flujos
+2. Visualiza los diagramas Mermaid para ver flujos [diagrams/](./diagrams/)
 3. Lee [DESIGN.md](./DESIGN.md) para detalles técnicos
-
-### Para Revisión de Código
-1. Consulta los comentarios agregados en cada clase/método
-2. Revisa la estructura de carpetas en ARCHITECTURE.md
-3. Verifica patrones de diseño en DESIGN.md
-
-### Para Mantenimiento
-1. Mantén los comentarios sincronizados con cambios de código
-2. Actualiza diagramas si cambia la arquitectura
-3. Lee la sección "Mejoras Futuras" en ARCHITECTURE.md
-
 ---
 
 ## 📚 Recursos Adicionales
@@ -147,37 +132,9 @@ SPA-Personal-ProjectsDisplay/
 
 ---
 
-## ✅ Checklist de Documentación
-
-- [x] Documentación arquitectónica (ARCHITECTURE.md)
-- [x] Documentación técnica detallada (DESIGN.md)
-- [x] Diagramas Mermaid (3 diagramas)
-- [x] Comentarios en servicios backend
-- [x] Comentarios en controladores backend
-- [x] Comentarios en entidades backend
-- [x] Comentarios en servicios frontend
-- [x] Comentarios en modelos frontend
-- [x] Comentarios en guards frontend
-- [x] Comentarios en directivas frontend
-- [x] README de documentación
-
----
-
-## 📞 Contacto & Actualizaciones
-
-Esta documentación fue creada el **09 de Febrero de 2026**.
-
-**Última actualización:** Febrero 2026
-
-Para mantener la documentación actualizada:
-1. Revisa los archivos después de cambios significativos
-2. Actualiza diagramas si cambia la arquitectura
-3. Agrega comentarios a nuevo código
-4. Documenta nuevas features
-
----
-
 **¿Necesitas más detalle sobre algo?** Consulta:
 - ¿Qué hace un componente específico? → Busca en [DESIGN.md](./DESIGN.md)
 - ¿Cómo funciona la autenticación? → Lee el flujo en [ARCHITECTURE.md](./ARCHITECTURE.md)
-- ¿Cómo está estructurado el código? → Revisa los diagramas Mermaid
+- ¿Cómo está estructurado el código? → Revisa los diagramas Mermaid en [Diagramas/](./diagrams/)
+
+**Última actualización:** 10 Febrero 2026

@@ -1,0 +1,18 @@
+sequenceDiagram
+  participant U as Usuario
+  participant F as Frontend
+  participant A as AuthController
+  participant S as JWTUtil
+  participant DB as Database
+  U->>F: RegisterForm / LoginForm
+  F->>A: POST /auth/register or /auth/login
+  A->>DB: Save user / Validate credentials
+  DB-->>A: OK
+  A->>S: Generate JWT (on login)
+  S-->>A: JWT token
+  A-->>F: 200 + JWT
+  F->>F: Store token (sessionStorage)
+  F->>Backend: Request protected resource (Authorization: Bearer ...)
+  Backend->>S: Validate token
+  S-->>Backend: Claims -> set SecurityContext
+  Backend-->>F: Protected resource

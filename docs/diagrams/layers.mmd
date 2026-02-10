@@ -1,0 +1,9 @@
+flowchart TB
+  Presentation[Presentation Layer\n(Angular Components)]
+  Logic[Logic Layer\n(Services)]
+  Protection[Protection Layer\n(Guards/Interceptors)]
+  Data[Data Layer\n(Models/DTOs)]
+  BackendLayers[Backend Layers\n(Controllers -> Services -> Repositories -> Entities)]
+  DB[(MySQL / DB)]
+
+  Presentation --> Logic --> Protection --> Data --> BackendLayers --> DB

@@ -1,0 +1,10 @@
+flowchart LR
+  subgraph Frontend
+    A[Angular Components] --> B[Services]
+    B --> C[Guards/Directives]
+  end
+  A -->|HTTP + Authorization header| Network[Network Layer (HTTP + JWT)]
+  Network --> Backend[Spring Boot API]
+  Backend --> ServicesS[Services]
+  ServicesS --> Repos[Repositories (JPA)]
+  Repos --> DB[(MySQL)]
