@@ -1,6 +1,7 @@
 # ETAPA 1: Construcción (Build)
 # Usa una imagen que ya incluya el JDK 25
-FROM maven:3.9-eclipse-temurin-25 AS buildWORKDIR /app
+FROM maven:3.9-eclipse-temurin-25 AS build
+WORKDIR /app
 
 # 1. Copiamos el archivo de configuración de dependencias primero
 # Esto ayuda a que Render no descargue todo cada vez si no has cambiado el pom.xml
