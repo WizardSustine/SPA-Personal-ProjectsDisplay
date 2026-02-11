@@ -5,6 +5,11 @@ html, body, main{
 }
 html{
     background-color: #c3c1c1bc}
+
+/* Banner area (970x90 mock) */
+.banner{height:var(--banner-height);display:flex;justify-content:center;align-items:center;z-index:95}
+.banner img{width:100%;max-width:970px;height:90px;object-fit:cover;border-radius:6px;box-shadow:0 6px 18px rgba(0,0,0,0.08)}
+
 @media screen AND (max-width: 1200px){
     html, body, main{
     width: 98.1%;

@@ -35,29 +35,29 @@
     <span></span>
     <span></span>
   </button>
-</nav>
 
-<!-- Mobile Menu Dropdown -->
-<div class="mobile-menu" [class.open]="menuOpen()">
-  <a trackClick="about" routerLink="/about" (click)="closeMenu()">Acerca de</a>
-  <a trackClick="admin users" *ngIf="auth.hasAnyRole(['admin', 'master'])" routerLink="/admin/users" (click)="closeMenu()">Usuarios</a>
-  <a trackClick="graphics" *ngIf="auth.isAuthenticated()" routerLink="/graphics" (click)="closeMenu()">Gráficas</a>
-  <a trackClick="contact" routerLink="/contact" (click)="closeMenu()">Contacto</a>
-  
-  <div class="mobile-menu-divider"></div>
-  
-  <ng-container *ngIf="!auth.isAuthenticated()">
-    <a trackClick="login" routerLink="/login" (click)="closeMenu()">Entrar</a>
-    <a trackClick="register" routerLink="/register" (click)="closeMenu()">Registrarse</a>
-  </ng-container>
-  <ng-container *ngIf="auth.isAuthenticated()">
-    <div class="mobile-user-info">
-      <span>👤 {{ auth.user()?.email }}</span>
-      <span *ngIf="auth.hasAnyRole(['admin', 'master'])" class="badge">{{ auth.user()?.role?.toUpperCase() }}</span>
-    </div>
-    <button (click)="auth.logout(); closeMenu()" class="mobile-logout-btn">Salir</button>
-  </ng-container>
-</div>
+</nav>
+  <!-- Mobile Menu Dropdown -->
+  <div class="mobile-menu" [class.open]="menuOpen()">
+    <a trackClick="about" routerLink="/about" (click)="closeMenu()">Acerca de</a>
+    <a trackClick="admin users" *ngIf="auth.hasAnyRole(['admin', 'master'])" routerLink="/admin/users" (click)="closeMenu()">Usuarios</a>
+    <a trackClick="graphics" *ngIf="auth.isAuthenticated()" routerLink="/graphics" (click)="closeMenu()">Gráficas</a>
+    <a trackClick="contact" routerLink="/contact" (click)="closeMenu()">Contacto</a>
+    
+    <div class="mobile-menu-divider"></div>
+    
+    <ng-container *ngIf="!auth.isAuthenticated()">
+      <a trackClick="login" routerLink="/login" (click)="closeMenu()">Entrar</a>
+      <a trackClick="register" routerLink="/register" (click)="closeMenu()">Registrarse</a>
+    </ng-container>
+    <ng-container *ngIf="auth.isAuthenticated()">
+      <div class="mobile-user-info">
+        <span>👤 {{ auth.user()?.email }}</span>
+        <span *ngIf="auth.hasAnyRole(['admin', 'master'])" class="badge">{{ auth.user()?.role?.toUpperCase() }}</span>
+      </div>
+      <button (click)="auth.logout(); closeMenu()" class="mobile-logout-btn">Salir</button>
+    </ng-container>
+  </div>
 
 <main>
   <router-outlet></router-outlet>
@@ -65,8 +65,8 @@
     <img src="resources/white_WA_PNG.png" style="width: 135%; transform: translate(-13%, -13%);" alt="WhatsApp" />
   </a>
 </main>
-<footer>
-  <div trackClick="banner" class="banner" *ngIf="banner">
-  <img [src]="banner.imageUrl" [alt]="banner.alt" />
-</div>
+<footer style="display: flex; align-items: center;">
+  <div class="footer">
+    <p style="margin:auto;">© Juan Gabriel Bustamante</p>
+  </div>
 </footer>

@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { aboutMock } from '../data/mock-about';
 import { AuthService } from '../services/auth.service';
+import { bannerMock } from '../data/mock-banner';
 
 @Component({
   selector: 'about-detail',
@@ -25,6 +26,9 @@ import { AuthService } from '../services/auth.service';
         </article>
       </div>
     </div>
+    <div trackClick="banner" class="banner" *ngIf="banner">
+      <img [src]="banner.imageUrl" [alt]="banner.alt" />
+    </div>
   </main>
   `,
   styles: [
@@ -34,7 +38,7 @@ import { AuthService } from '../services/auth.service';
     .cards{display:flex;flex-direction:column;gap:16px;margin-top:18px}
     .about-card{display:flex;gap:12px;align-items:center}
     .about-card.reverse{flex-direction:row-reverse}
-    .card-media img{width:260px;height:160px;object-fit:cover;border-radius:8px}
+    .card-media img{width:260px;height:160px;object-fit:fill;border-radius:8px}
     .card-body{flex:1}
     @media(max-width:800px){.about-card{flex-direction:column}.about-card.reverse{flex-direction:column}}
     @media(max-width:600px){
@@ -45,6 +49,7 @@ import { AuthService } from '../services/auth.service';
   ]
 })
 export class AboutDetailComponent {
+  banner = bannerMock;
   data = aboutMock;
   constructor(public auth: AuthService) {}
 }

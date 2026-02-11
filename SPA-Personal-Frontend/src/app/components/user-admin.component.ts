@@ -45,6 +45,7 @@ interface User {
           </thead>
           <tbody>
             <tr *ngFor="let user of users()">
+              @if(user.username !== "master"){
               <td>{{ user.id }}</td>
               <td>{{ user.email }}</td>
               <td>{{ user.username || '-' }}</td>
@@ -56,7 +57,6 @@ interface User {
                 >
                   <option value="user">User</option>
                   <option value="admin">Admin</option>
-                  <option value="master">Master</option>
                 </select>
               </td>
               <td>
@@ -69,6 +69,8 @@ interface User {
                   Eliminar
                 </button>
               </td>
+              }
+            
             </tr>
           </tbody>
         </table>
