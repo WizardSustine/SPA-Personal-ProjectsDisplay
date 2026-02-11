@@ -5,6 +5,7 @@ import java.util.List;
 
 
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import com.personalspa.personalpage.enviroments.Enviroments;
 
@@ -21,7 +22,7 @@ import io.jsonwebtoken.security.Keys;
  * Utilidad para generacion, validacion y extraccion de informacion de JWT tokens.
  * Usa HMAC-SHA256 con clave de 256 bits. Tokens expiran en 1 hora.
  */
-@Component
+@Service
 public class JWTUtil {
 
     private String SECRET = Enviroments.JWT_SECRET_KEY;
