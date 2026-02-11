@@ -1,15 +1,12 @@
-# Build stage
-FROM maven:3.9.4-eclipse-temurin-17 AS build
-WORKDIR /build
-COPY pom.xml mvnw ./
-COPY .mvn .mvn
-COPY src ./src
-RUN mvn -B -DskipTests package
+# Usa una imagen que ya incluya el JDK 25
+FROM maven:3.9-eclipse-temurin-25 AS build
+WORKDIR /app
+COPY . .
+RUN mvn clean package -DskipTests
 
-# Run stage
-FROM eclipse-temurin:17-jre
-ARG JAR_FILE=/build/target/*.jar
-COPY --from=build ${JAR_FILE} /app/app.jar
+# Usa el JRE 25 para la ejecución
+FROM eclipse-temurin:25-jre-jammy
+WORKDIR /app
+COPY --from=build /target/*.jar app.jar
 EXPOSE 8080
-ENV JAVA_OPTS="-Xms256m -Xmx512m"
-ENTRYPOINT ["sh", "-c", "exec java $JAVA_OPTS -jar /app/app.jar"]
+ENTRYPOINT ["java", "-jar", "app.jar"]
