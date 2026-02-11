@@ -24,7 +24,7 @@ import io.jsonwebtoken.security.Keys;
 @Component
 public class JWTUtil {
 
-    private final String SECRET = Enviroments.JWT_SECRET_KEY;
+    private String SECRET = Enviroments.JWT_SECRET_KEY;
     private final long EXPIRATION = 1000 * 60 * 60; // 1 hora
     private final Key key = Keys.hmacShaKeyFor(SECRET.getBytes(StandardCharsets.UTF_8));
 
