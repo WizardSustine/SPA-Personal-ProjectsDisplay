@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -29,13 +30,13 @@ public class UserAppController {
 
     @PreAuthorize("hasAnyRole('ADMIN','MASTER')")
     @PostMapping("/users/delete/{id}")
-    public void deleteUser(@RequestParam Long id) {
+    public void deleteUser(@PathVariable Long id) {
         userService.deleteById(id);
     }
 
     @PreAuthorize("hasAnyRole('ADMIN','MASTER')")
     @PutMapping("/users/update/{id}")
-    UserApp updateUser(@RequestBody UserApp newUser, @RequestParam Long id){
+    UserApp updateUser(@RequestBody UserApp newUser, @PathVariable Long id){
         return userService.updateUser(id, newUser);
     }
     
@@ -51,7 +52,7 @@ public class UserAppController {
     }
     
     @GetMapping("/users/{email}")
-    public UserApp getUserById(@RequestParam String email) {
+    public UserApp getUserById(@PathVariable String email) {
         return userService.findByEmail(email)
             .orElseThrow(() -> new UsernameNotFoundException(email));
     }

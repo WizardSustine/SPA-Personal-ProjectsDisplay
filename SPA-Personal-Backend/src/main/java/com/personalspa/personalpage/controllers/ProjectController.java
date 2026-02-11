@@ -61,14 +61,14 @@ public class ProjectController {
     /** Actualiza un proyecto existente. Requiere rol ADMIN o MASTER. */
     @PreAuthorize("hasAnyRole('ADMIN','MASTER')")
     @PutMapping("/project/update/{id}")
-    Project udpateProject(@RequestBody Project newProject, @RequestParam Long id) {
+    Project udpateProject(@RequestBody Project newProject, @PathVariable Long id) {
         return projectService.updateProject(id, newProject);
     }
 
     /** Elimina un proyecto. Requiere rol ADMIN o MASTER. */
     @PreAuthorize("hasAnyRole('ADMIN','MASTER')")
     @DeleteMapping("/project/delete/{id}")
-    public void deleteProject(@RequestParam Long id) {
+    public void deleteProject(@PathVariable Long id) {
         projectService.deleteById(id);
     }
 

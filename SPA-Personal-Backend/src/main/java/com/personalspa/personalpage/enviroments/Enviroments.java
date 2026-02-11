@@ -1,5 +1,6 @@
 package com.personalspa.personalpage.enviroments;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 
@@ -7,11 +8,11 @@ import org.springframework.stereotype.Component;
 @Component
 public class Enviroments {
 
-    //@Value("${app.front.url}")
-    public static final String FRONT_URL = "http://localhost:4200";
+    @Value("${cors.allowed-origins}")
+    public static final String FRONT_URL:
     
-    //@Value("${jwt.secretkey}")
-    public static final String JWT_SECRET_KEY = "eb21466f0210d81b5018da6fae689d113459f6a9f4e0c84ce1f2b67810117632" ;
+     @Value("${jwt.secret}")
+    public static final String JWT_SECRET_KEY;
     // Advice 32 characters
     
     //@Value("${jwt.expiration}")
