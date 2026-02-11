@@ -1,8 +1,9 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable, signal } from '@angular/core';
 import { Router } from '@angular/router';
-import { catchError, Observable, firstValueFrom } from 'rxjs';
+import { Observable, firstValueFrom } from 'rxjs';
 import { UserAuth, UserPayload, LoginResponse } from '../models/user.model';
+import { environment } from '../../enviroments/enviroment';
 
 function authHeader(): Record<string, string> {
   const token = sessionStorage.getItem('auth_token');
@@ -18,7 +19,7 @@ function authHeader(): Record<string, string> {
 export class AuthService {
   /** Signal reactivo que contiene los datos del usuario autenticado */
   public user = signal<UserPayload | null>(null);
-  private base = '/api';
+  private base = environment.apiUrl;
 
   constructor(private router: Router, private http: HttpClient) {
     const raw = sessionStorage.getItem('auth_user');

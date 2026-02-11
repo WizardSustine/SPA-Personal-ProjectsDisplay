@@ -1,10 +1,10 @@
 import { Attribute, Injectable, signal } from '@angular/core';
 import { Project } from '../models/project.model';
 import { mockProjects } from '../data/mock-projects';
-import { apiUrl } from '../app.routes'
+import { environment } from '../../enviroments/enviroment';
 import { Observable } from 'rxjs/internal/Observable';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { catchError, firstValueFrom, map, of } from 'rxjs';
+import { catchError, map, of } from 'rxjs';
 
 
 function authHeader(): Record<string, string> {
@@ -18,7 +18,7 @@ function authHeader(): Record<string, string> {
  */
 @Injectable({ providedIn: 'root' })
 export class ProjectService {
-    private base = "/api";//apiUrl;
+    private base = environment.apiUrl;
     
     constructor(private http: HttpClient) {}
 

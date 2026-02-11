@@ -18,6 +18,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -47,6 +48,7 @@ public class AuthController {
      * Valida que username y email sean unicos antes de guardar.
      */
     @PostMapping("/register")
+    //@CrossOrigin(origins = "https://spa-personal.web.app/") // Permitir CORS para esta ruta 
     public ResponseEntity<?> register(@RequestBody RegisterRequest request) {
         if (userService.existsByUsername(request.username())) {
             return ResponseEntity.badRequest().body("Username already exists");

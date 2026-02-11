@@ -21,4 +21,3 @@ export const routes: Routes = [
 	{ path: 'graphics', component: Graphics},
 	{ path: 'project/:id', component: ProjectDetailComponent }
 ];
-export const apiUrl: String = 'http://localhost:8080';

@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable, signal } from '@angular/core';
 import { Funnel } from '../models/funnel.model';
 import { catchError, map, Observable, of } from 'rxjs';
+import { environment } from '../../enviroments/enviroment';
 
 /**
  * Servicio para gestion del funnel de conversion.
@@ -12,7 +13,7 @@ import { catchError, map, Observable, of } from 'rxjs';
 export class FunnelPathService {
     funnel: Funnel | null = null;
 
-    base = "/api";
+    base = environment.apiUrl;
 
     constructor(private http: HttpClient) {    }
 
