@@ -3,6 +3,7 @@ package com.personalspa.personalpage.entities;
 import java.util.Date;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import com.personalspa.personalpage.enviroments.Enviroments;
@@ -23,10 +24,17 @@ import io.jsonwebtoken.security.Keys;
 @Service
 public class JWTUtil {
 
-    private String SECRET = Enviroments.JWT_SECRET_KEY;
+    
     private final long EXPIRATION = 1000 * 60 * 60; // 1 hora
-    private final Key key = Keys.hmacShaKeyFor(SECRET.getBytes(StandardCharsets.UTF_8));
+    private final Key key;
 
+      public JWTUtil(@Value("${jwt.secret}") String secret) {
+        if (secret == null || secret.length() < 32) {
+            throw new IllegalArgumentException("JWT secret must be at least 32 characters long");
+        }
+        this.key = Keys.hmacShaKeyFor(secret.getBytes(StandardCharsets.UTF_8));
+    }
+    
     /**
      * Genera un JWT token con email como subject y lista de roles como claim.
      * Token valido por 1 hora desde su emision.
