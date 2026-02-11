@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.personalspa.personalpage.entities.Funnel;
-import com.personalspa.personalpage.entities.Project;
 import com.personalspa.personalpage.repositories.FunnelRepo;
 
 import jakarta.transaction.Transactional;
