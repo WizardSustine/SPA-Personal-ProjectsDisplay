@@ -9,10 +9,10 @@ import org.springframework.stereotype.Component;
 public class Enviroments {
 
     @Value("${cors.allowed-origins}")
-    public static final String FRONT_URL:
+    public static String FRONT_URL;
     
      @Value("${jwt.secret}")
-    public static final String JWT_SECRET_KEY;
+    public static String JWT_SECRET_KEY;
     // Advice 32 characters
     
     //@Value("${jwt.expiration}")
