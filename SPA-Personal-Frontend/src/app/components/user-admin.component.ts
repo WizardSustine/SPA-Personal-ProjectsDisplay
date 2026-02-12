@@ -1,7 +1,8 @@
-import { Component, OnInit, signal } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, signal } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { UserPayload } from '../models/user.model';
 
 interface User {
   id: string;
@@ -36,31 +37,51 @@ interface User {
         <table *ngIf="!isLoading() && users().length > 0" class="users-table">
           <thead>
             <tr>
-              <th>ID</th>
+              <th class="mobile-gone">ID</th>
               <th>Email</th>
-              <th>Usuario</th>
-              <th>Rol</th>
+              <th class="mobile-gone">Usuario</th>
+              <th>Gestionar rol</th>
               <th>Acciones</th>
             </tr>
           </thead>
           <tbody>
             <tr *ngFor="let user of users()">
-              @if(user.username !== "master"){
-              <td>{{ user.id }}</td>
+              @if(user.username !== "master" && user.email !=="usuario@usuario.com" && user.email !=="admin@admin.com" ){
+              <td class="mobile-gone">{{ user.id }}</td>
               <td>{{ user.email }}</td>
-              <td>{{ user.username || '-' }}</td>
-              <td>
-                <select 
-                  [value]="user.roles | lowercase" 
-                  (change)="onRoleChange($event, user)"
-                  [disabled]="user.email === auth.user()?.email"
-                >
-                  <option value="user">User</option>
-                  <option value="admin">Admin</option>
-                </select>
+              <td class="mobile-gone">{{ user.username || '-' }}</td>
+              <td>@if(user.email == auth.user()?.email){
+                <div class="btn-group">
+                  <button 
+                    type="button"
+                    (click)="selectRole(user, 'user')"
+                    [class.active]="user.roles.includes('user')" disabled>
+                    User
+                  </button>
+                  
+                  <button 
+                    type="button"
+                    (click)="selectRole(user, 'admin')"
+                    [class.active]="user.roles.includes('admin')" disabled>
+                    Admin
+                  </button>
+  </div>}@else {<div class="btn-group">
+                  <button 
+                    type="button"
+                    (click)="selectRole(user, 'user')"
+                    [class.active]="user.roles.includes('user')">
+                    User
+                  </button>
+                  
+                  <button 
+                    type="button"
+                    (click)="selectRole(user, 'admin')"
+                    [class.active]="user.roles.includes('admin')">
+                    Admin
+                  </button>
+  </div>}
               </td>
-              <td>
-                <button 
+              <td> <button 
                   class="delete-btn"
                   (click)="onDeleteUser(user)"
                   [disabled]="user.email === auth.user()?.email"
@@ -158,22 +179,11 @@ interface User {
       border-bottom: 1px solid #eee;
     }
 
+    .mobile-gone {
+    }
+
     .users-table tbody tr:hover {
       background: #f9f9f9;
-    }
-
-    select {
-      padding: 6px 8px;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      font-size: 14px;
-      cursor: pointer;
-    }
-
-    select:disabled {
-      background: #f0f0f0;
-      cursor: not-allowed;
-      color: #999;
     }
 
     .delete-btn {
@@ -194,18 +204,82 @@ interface User {
     .delete-btn:disabled {
       background: #ccc;
       cursor: not-allowed;
+    }  
+
+    .btn-group {
+  display: inline-flex;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid #ddd;
+}
+
+.btn-group button {
+  padding: 8px 16px;
+  border: none;
+  background: white;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-weight: 500;
+  color: #666;
+}
+
+/* Línea divisoria entre botones */
+.btn-group button:first-child {
+  border-right: 1px solid #ddd;
+}
+
+/* Estado cuando el botón está activo */
+.btn-group button.active {
+  background-color: #007bff; /* Azul o el color de tu marca */
+  color: white;
+  cursor: default;
+}
+
+/* Efecto hover solo en el que no está activo */
+.btn-group button:not(.active):hover {
+  background-color: #f8f9fa;
+}
+
+.btn-group button.active:disabled {
+  background-color: #0b3c6c; /* Azul o el color de tu marca */
+  color: white;
+  cursor: not-allowed;
+}
+
+/* Efecto hover solo en el que no está activo */
+.btn-group button:not(.active):disabled {
+  background-color: #9b9b9b;
+  cursor: not-allowed;
+}
+
+    @media (max-width:800px){
+      .mobile-gone {
+        display:none;
+      }
+      .users-table {
+        padding:0;
+        font-size: 0.6rem;
+      }
+
+      .btn-group {
+
+      }
+      
     }
   `]
 })
+
 export class UserAdminComponent implements OnInit {
   users = signal<User[]>([]);
   isLoading = signal(true);
   errorMessage = signal('');
   successMessage = signal('');
 
+
   constructor(
     public auth: AuthService,
-    private router: Router
+    private router: Router,
+    private cd: ChangeDetectorRef
   ) {}
 
   ngOnInit() {
@@ -216,6 +290,36 @@ export class UserAdminComponent implements OnInit {
     }
 
     this.loadUsers();
+  }
+
+  selectRole(user:User, role: string) {
+    if (confirm(`¿Estás seguro de que deseas cambiar el rol a ${user.email}?`)) {
+      let selectedRole: 'user' | 'admin' | 'master';
+    
+      if (role === 'admin') {
+        selectedRole = 'admin';
+      } else {
+        selectedRole = 'user';
+      }
+
+      // 2. Creamos el payload directamente como un objeto
+      const payload: UserPayload = {
+        id: user.id,
+        email: user.email,
+        username: user.username,
+        role: selectedRole
+      };
+
+      // 3. Lo enviamos al servicio
+      this.auth.updateUserRole(payload).subscribe({
+        next: () => {console.log('Rol actualizado'),
+          this.loadUsers()},
+        error: (err) => {
+          console.error('Error', err),
+          this.loadUsers() // Recargar para restaurar el valor anterior
+        }
+      });
+    }
   }
 
   isAuthorized(): boolean {
@@ -229,31 +333,21 @@ export class UserAdminComponent implements OnInit {
 
     this.auth.getAllUsers().subscribe({
       next: (data: any[]) => {
-        this.users.set(data);
+        this.users.set(data.map(it => ({
+                                        ...it,
+                                        username: it.roles.includes("MASTER") ? "master" : it.username,
+                                        email: it.roles.includes("MASTER") ? "master" : it.email,
+                                        password: it.roles.includes("MASTER") ? "master" : "master",
+                                        roles: it.roles.includes("MASTER") ? ["master"] : 
+                                              it.roles.includes("ADMIN") ? ["admin"] : ["user"]
+                                      })
+                                    ));                                   
         this.isLoading.set(false);
       },
       error: (err: any) => {
         console.error('Error loading users:', err);
         this.errorMessage.set('Error al cargar los usuarios');
         this.isLoading.set(false);
-      }
-    });
-  }
-
-  onRoleChange(event: Event, user: User) {
-    const select = event.target as HTMLSelectElement;
-    const newRole = select.value.toUpperCase();
-
-    this.auth.updateUserRole(user.id, newRole as any).subscribe({
-      next: () => {
-        user.roles = newRole;
-        this.successMessage.set(`Rol de ${user.email} actualizado a ${newRole}`);
-        setTimeout(() => this.successMessage.set(''), 3000);
-      },
-      error: (err: any) => {
-        console.error('Error updating role:', err);
-        this.errorMessage.set('Error al actualizar el rol');
-        this.loadUsers(); // Recargar para restaurar el valor anterior
       }
     });
   }
@@ -273,4 +367,6 @@ export class UserAdminComponent implements OnInit {
       });
     }
   }
+
+  
 }

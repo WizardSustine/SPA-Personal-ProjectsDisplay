@@ -172,8 +172,14 @@ export class AuthService {
     });
   }
 
-  updateUserRole(userId: string, role: 'user' | 'admin' | 'master'): Observable<any> {
-    return this.http.put(`${this.base}/manage/users/update/${userId}`, { roles: role.toUpperCase() }, {
+  updateUserRole(user:UserPayload): Observable<any> {
+    return this.http.put(`${this.base}/manage/users/update/${user.id}`, {
+      id: user.id,
+    username: user.username,
+      email: user.email,
+      password: '',
+      roles: user.role,
+    }, {
       headers: this.headers()
     });
   }

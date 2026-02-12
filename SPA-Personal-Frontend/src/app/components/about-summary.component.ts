@@ -21,10 +21,10 @@ import { aboutMock } from '../data/mock-about';
     `
     .about-summary{width:100%;margin-bottom:1rem; background:linear-gradient(135deg, #f6f6ff65 0%, #c3c1f096 100%);padding:18px;border-radius:10px; cursor:pointer}
     .about-inner{
-        max-width:1100px;margin:0;display:flex;justify-content:space-between;align-items:start;gap:12px}
+        max-width:98%;margin:0;display:flex;justify-content:space-between;align-items:start;gap:12px}
     .about-text h2{margin:0}
-    .subtitle{color:var(--muted)}
-    .lead{margin:8px 0 0 0}
+    .subtitle{color:var(--muted); text-align:justify}
+    .lead{margin:8px 0 0 0; ext-align:justify}
     @media(max-width:800px){ .about-inner{flex-direction:column;align-items:flex-start} }
     `
   ]

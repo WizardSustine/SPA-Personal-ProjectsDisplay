@@ -48,13 +48,10 @@ public class UserAppService {
     public UserApp updateUser(Long id, UserApp user) {  
         UserApp thisUserApp = userAppRepo.findById(id)
             .orElseThrow(() -> new RuntimeException("User not found")); 
-        
-        thisUserApp.setUsername(user.getUsername());
-        thisUserApp.setEmail(user.getEmail());
-        thisUserApp.setRoles(user.getRoles());
-        thisUserApp.setPassword(user.getPassword());
+    
+        thisUserApp.setRoles(user.getRoles().toUpperCase());
 
-        return userAppRepo.save(user);
+        return userAppRepo.save(thisUserApp);
     }
 
     public void deleteById(Long id) {
