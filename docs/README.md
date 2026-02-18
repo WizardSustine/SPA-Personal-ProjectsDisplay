@@ -13,10 +13,6 @@ Descripción detallada de la arquitectura del sistema incluyendo:
 - Modelo de base de datos
 - Patrones de diseño implementados
 - Seguridad y autenticación JWT
-- Mejoras futuras recomendadas
-
-**Ideal para:** Entender el proyecto "desde 10,000 pies de altura"
-
 ---
 
 ### 2. **DESIGN.md**
@@ -31,13 +27,10 @@ Especificaciones técnicas detalladas incluyendo:
 - Error handling
 - Performance & optimizaciones
 - Consideraciones de seguridad
-
-**Ideal para:** Desarrolladores que necesitan entender detalles técnicos específicos
-
 ---
 
 ### 3. **Diagramas Mermaid**
-Se han renderizado 3 diagramas visuales:
+3 diagramas visuales
 
 #### 3.1 Arquitectura General
 Muestra la interacción entre:
@@ -107,29 +100,6 @@ SPA-Personal-ProjectsDisplay/
         ├── components/            ✅ Componentes documentados
         └── directives/            ✅ Comentarios agregados
 ```
-
----
-
-## Documentación
-
-### Para Nuevos Desarrolladores
-1. Lee [ARCHITECTURE.md](./ARCHITECTURE.md) para entender el proyecto
-2. Visualiza los diagramas Mermaid para ver flujos [diagrams/](./diagrams/)
-3. Lee [DESIGN.md](./DESIGN.md) para detalles técnicos
----
-
-## 📚 Recursos Adicionales
-
-### Backend
-- Application properties: `application.properties`
-- Maven config: `pom.xml`
-- Security config: `SecurityConfig.java`
-
-### Frontend
-- Angular routes: `app.routes.ts`
-- Proxy config: `proxy.conf.json`
-- Global styles: `styles.css`
-
 ---
 
 **¿Necesitas más detalle sobre algo?** Consulta:
@@ -137,4 +107,4 @@ SPA-Personal-ProjectsDisplay/
 - ¿Cómo funciona la autenticación? → Lee el flujo en [ARCHITECTURE.md](./ARCHITECTURE.md)
 - ¿Cómo está estructurado el código? → Revisa los diagramas Mermaid en [Diagramas/](./diagrams/)
 
-**Última actualización:** 10 Febrero 2026
+**Última actualización:** 18 Febrero 2026
