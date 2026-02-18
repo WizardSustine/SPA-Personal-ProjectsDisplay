@@ -21,7 +21,7 @@
 ### Frontend
 - **Framework:** Angular 18+
 - **Lenguaje:** TypeScript
-- **Estilo:** CSS puro + TailwindCSS (opcional)
+- **Estilo:** CSS
 - **State Management:** Angular Signals
 - **Build:** Angular CLI
 
@@ -59,12 +59,11 @@ PersonalpageApplication (Spring Boot Main)
     │   ├── SecurityConfig - Configuración de Spring Security
     │   ├── JwtAuthFilter - Filtro de autenticación JWT
     │   ├── JWTUtil - Generación y validación de tokens
-    │   └── OnAuthenticationSuccessHandler - Manejador post-autenticación
+    │   └── OnAuthenticationSuccessHandler - Operador post-autenticación
     │
     ├── DTOs (Data Transfer Objects)
     │   ├── LoginRequest
     │   ├── RegisterRequest
-    │   └── Others
     │
     ├── Handlers (Exception Handling)
     │   ├── ProjectNotFoundException
@@ -72,8 +71,7 @@ PersonalpageApplication (Spring Boot Main)
     │   └── UsernameNotFoundException
     │
     └── Config
-        ├── SecurityConfig
-        └── Enviroments (Variables de entorno)
+        └── SecurityConfig
 ```
 
 ### 2. Frontend - Estructura de Componentes
@@ -289,15 +287,6 @@ Request → JwtAuthFilter
 
 ---
 
-## Proxy Configuration
-
-El frontend usa proxy para comunicarse con el backend local:
-- **Archivo:** `src/proxy.conf.json`
-- **Redirección:** Rutas `/api/*` → `http://localhost:8080`
-- **Comando:** `ng serve --proxy-config src/proxy.conf.json`
-
----
-
 ## Variables de Entorno
 
 ### Backend (`application.properties`)
@@ -331,22 +320,6 @@ jwt.secret=your_secret_key
 - `@angular/common/http` - HTTP client
 - `@angular/router` - Routing
 - `rxjs` - Reactive programming
-
----
-
-## Mejoras Futuras Recomendadas
-
-1. **Logging Centralizado:** Agregar SLF4J + Logback
-2. **Caché:** Implementar Redis para proyectos accedidos frecuentemente
-3. **Validación:** Agregar Bean Validation (@Valid) en DTOs
-4. **Testing:** Unit tests + Integration tests
-5. **API Documentation:** OpenAPI/Swagger
-6. **Error Handling Uniforme:** Standardizar respuestas de error
-7. **Audit Trail:** Registrar cambios en proyectos
-8. **Rate Limiting:** Protección contra abuso
-9. **CORS:** Configuración explícita de CORS
-10. **Database Migrations:** Flyway o Liquibase
-
 ---
 
 **Última actualización:** Febrero 2026
