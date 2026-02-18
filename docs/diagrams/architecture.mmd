@@ -3,8 +3,8 @@ flowchart LR
     A[Angular Components] --> B[Services]
     B --> C[Guards/Directives]
   end
-  A -->|HTTP + Authorization header| Network[Network Layer (HTTP + JWT)]
+  A -->|HTTP + Authorization header| Network[Network Layer]
   Network --> Backend[Spring Boot API]
   Backend --> ServicesS[Services]
-  ServicesS --> Repos[Repositories (JPA)]
+  ServicesS --> Repos[Repositories]
   Repos --> DB[(MySQL)]
